@@ -1,13 +1,18 @@
 <template>
-  <HelloWorld />
+  <div>
+    <v-container>
+      <h1 class="grey--text ma-3">Home</h1>
+      <latest-movie></latest-movie>
+    </v-container>
+  </div>
 </template>
 
 <script>
-import HelloWorld from '../components/HelloWorld';
+import LatestMovie from "@/components/LatestMovie";
 
 export default {
   components: {
-    HelloWorld,
-  },
+    LatestMovie
+  }
 };
 </script>
