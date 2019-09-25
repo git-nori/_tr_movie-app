@@ -18,7 +18,7 @@
               <p>IMDB-id: {{ item.imdbID }}</p>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn text color="success" @click>View</v-btn>
+              <v-btn text color="success" @click="singleMovie(item.imdbID)">View</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -49,6 +49,11 @@ export default {
       .catch(error => {
         console.log(error);
       });
+  },
+  methods: {
+    singleMovie(id) {
+      this.$router.push("/movie/" + id); // '/movie/imdbID'のURLに遷移する
+    }
   }
 };
 </script>
