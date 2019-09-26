@@ -6,14 +6,17 @@
 
       <v-toolbar-items>
         <v-row sm="6" md="3" class="mt-3 justify-end">
-          <v-form v-model="valid" class="mx-3">
+          <!-- enterを押下時にページがリロードされないよう設定 -->
+          <v-form v-model="valid" class="mx-3" @submit.prevent>
+            <!-- @keyup.enter => enterで検索をかけられるよう設定 -->
             <v-text-field
               label="movieName"
               required
               :rules="searchWordRules"
               prepend-icon="mdi-movie"
               v-model="searchWord"
-            >test</v-text-field>
+              @keyup.enter="searchMovie"
+            ></v-text-field>
           </v-form>
           <v-btn class="mx-3" :disabled="!dataAvailable" @click="searchMovie">
             <v-icon left>mdi-magnify</v-icon>
