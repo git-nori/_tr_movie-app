@@ -32,7 +32,7 @@ export default {
   props: ["name"], // パスパラメータの値
   data() {
     return {
-      loading: false,
+      loading: true,
       movieResponse: []
     };
   },
@@ -45,7 +45,7 @@ export default {
       .get(targetUrl)
       .then(response => {
         this.movieResponse = response.data.Search;
-        console.log(this.movieResponse);
+        this.loading = false;
       })
       .catch(error => {
         console.log(error);
