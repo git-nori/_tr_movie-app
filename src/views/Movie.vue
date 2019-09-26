@@ -4,7 +4,7 @@
       <h1 class="grey--text my-3">Movie</h1>
       <v-dialog v-model="dialog">
         <template v-slot:activator="{on}">
-          <v-btn text v-on="on" color="info">test</v-btn>
+          <v-btn text v-on="on" color="info">View Ratings</v-btn>
         </template>
         <v-card>
           <v-card-title>
