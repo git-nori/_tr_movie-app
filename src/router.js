@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Movie from './views/Movie.vue'
+import Home from '@/views/Home.vue'
+import Movie from '@/views/Movie.vue'
+import SearchMovie from '@/views/SearchMovie.vue'
 
 Vue.use(Router)
 
@@ -19,6 +20,12 @@ export default new Router({
       name: 'movie',
       props: true, // パスパラメータの値を取得するためにtrueに設定
       component: Movie
+    },
+    {
+      path: '/search/:name',
+      name: 'searchMovie',
+      props: true,
+      component: SearchMovie
     }
   ]
 })
