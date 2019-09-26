@@ -8,7 +8,7 @@
         </template>
         <v-card>
           <v-card-title>
-            <span class="headline">Ratings</span>
+            <span class="headline">Ratings of {{ this.singleMovie.Title }}</span>
           </v-card-title>
           <v-card-text>
             <v-container>
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import movieApi from "@/services/MovieApi";
 
 export default {
   props: ["id"], // パスパラメータの値
@@ -50,13 +50,8 @@ export default {
     };
   },
   mounted() {
-    let targetUrl = "http://www.omdbapi.com/?apikey=87929455&i={}&Content-Type=application/json".replace(
-      "{}",
-      this.id
-    ); // apiのURL
-
-    axios.get(targetUrl).then(response => {
-      this.singleMovie = response.data;
+    movieApi.fetchSingleMovie(this.id).then(response => {
+      this.singleMovie = response;
       this.ratings = this.singleMovie.Ratings;
     });
   }

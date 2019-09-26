@@ -28,22 +28,20 @@
 </template>
 
 <script>
-import axios from "axios";
+import movieApi from "@/services/MovieApi";
 
 export default {
   data() {
     return {
-      targetUrl:
-        "http://www.omdbapi.com/?s=mummy&apikey=87929455&page=1&type=movie&Content-Type=application/json", // apiのURL
       wholeResponse: [],
       loading: true
     };
   },
   mounted() {
-    axios
-      .get(this.targetUrl)
+    movieApi
+      .fetchMovieCollection("mummy")
       .then(response => {
-        this.wholeResponse = response.data.Search; // dataのSearch内にある(オブジェクトを内包した)リストを取得
+        this.wholeResponse = response.Search; // dataのSearch内にある(オブジェクトを内包した)リストを取得
         this.loading = false;
       })
       .catch(error => {
