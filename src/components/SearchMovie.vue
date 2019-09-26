@@ -77,6 +77,7 @@ export default {
   // 【改善】watchプロパティを使用し、nameが変更されるたびにaxiosを用いたメソッドを呼び出すようにする
   watch: {
     name(value) {
+      this.loading = true;
       this.fetchResult(value);
     }
   }
