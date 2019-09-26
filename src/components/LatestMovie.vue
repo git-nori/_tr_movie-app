@@ -18,7 +18,7 @@
               <p>IMDB-id: {{ item.imdbID }}</p>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn text color="success" @click="singleMovie(item.imdbID)">View</v-btn>
+              <movie :id="item.imdbID"></movie>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -29,6 +29,7 @@
 
 <script>
 import movieApi from "@/services/MovieApi";
+import Movie from "@/components/Movie";
 
 export default {
   data() {
@@ -37,9 +38,12 @@ export default {
       loading: true
     };
   },
+  components: {
+    Movie
+  },
   mounted() {
     movieApi
-      .fetchMovieCollection("mummy")
+      .fetchMovieCollection("Avengers")
       .then(response => {
         this.wholeResponse = response.Search; // dataのSearch内にある(オブジェクトを内包した)リストを取得
         this.loading = false;
@@ -47,11 +51,6 @@ export default {
       .catch(error => {
         console.log(error);
       });
-  },
-  methods: {
-    singleMovie(id) {
-      this.$router.push("/movie/" + id); // '/movie/imdbID'のURLに遷移する
-    }
   }
 };
 </script>

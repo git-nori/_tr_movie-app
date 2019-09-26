@@ -22,7 +22,7 @@
               <p>IMDB-id: {{ item.imdbID }}</p>
             </v-card-text>
             <v-card-actions class="justify-end">
-              <v-btn text color="success" @click="singleMovie(item.imdbID)">View Detail</v-btn>
+              <movie :id="item.imdbID"></movie>
             </v-card-actions>
           </v-card>
         </v-col>
@@ -33,6 +33,7 @@
 
 <script>
 import movieApi from "@/services/MovieApi";
+import Movie from "@/components/Movie";
 
 export default {
   props: {
@@ -45,13 +46,13 @@ export default {
       movieResponse: []
     };
   },
+  components: {
+    Movie
+  },
   mounted() {
     this.fetchResult(this.name);
   },
   methods: {
-    singleMovie(id) {
-      this.$router.push("/movie/" + id);
-    },
     fetchResult(value) {
       if (value !== undefined) {
         movieApi
