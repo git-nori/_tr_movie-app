@@ -35,30 +35,40 @@ export default {
   },
   data() {
     return {
-      targetUrl: "http://www.omdbapi.com/?apikey=87929455&Content-Type=application/json&s={}".replace(
-        "{}",
-        this.name
-      ),
       loading: true,
       movieResponse: []
     };
   },
   mounted() {
-    if (this.name !== undefined) {
-      axios
-        .get(this.targetUrl)
-        .then(response => {
-          this.movieResponse = response.data.Search;
-          this.loading = false;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
+    this.fetchResult(this.name);
   },
   methods: {
     singleMovie(id) {
       this.$router.push("/movie/" + id);
+    },
+    fetchResult(value) {
+      if (value !== undefined) {
+        const targetUrl = "http://www.omdbapi.com/?apikey=87929455&Content-Type=application/json&s={}".replace(
+          "{}",
+          value
+        );
+        axios
+          .get(targetUrl)
+          .then(response => {
+            this.movieResponse = response.data.Search;
+            this.loading = false;
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+    }
+  },
+  // 【問題】(ライフサイクルフックの)mountedはコンポーネントがマウントされた際に1回のみ実行されるため、既にSearchMovieがマウントされている状態でnameの値を変更しても呼び出されない
+  // 【改善】watchプロパティを使用し、nameが変更されるたびにaxiosを用いたメソッドを呼び出すようにする
+  watch: {
+    name(value) {
+      this.fetchResult(value);
     }
   }
 };
