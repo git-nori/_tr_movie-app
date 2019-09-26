@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home.vue'
 import Movie from '@/views/Movie.vue'
-import SearchMovie from '@/views/SearchMovie.vue'
+import Search from '@/views/Search.vue'
 
 Vue.use(Router)
 
@@ -22,10 +22,10 @@ export default new Router({
       component: Movie
     },
     {
-      path: '/search/:name',
-      name: 'searchMovie',
+      path: '/search/:keyName',
+      name: 'search',
       props: true,
-      component: SearchMovie
+      component: Search
     }
   ]
 })
