@@ -1,8 +1,11 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-container fruid>
-        <v-row sm="6" md="3" class="justify-center mt-3">
+      <v-toolbar-title class="grey--text">Movie Searcher</v-toolbar-title>
+      <div class="flex-grow-1"></div>
+
+      <v-toolbar-items>
+        <v-row sm="6" md="3" class="mt-3 justify-end">
           <v-form v-model="valid" class="mx-3">
             <v-text-field
               label="movieName"
@@ -17,7 +20,7 @@
             <span>SEARCH</span>
           </v-btn>
         </v-row>
-      </v-container>
+      </v-toolbar-items>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
